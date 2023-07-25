@@ -33,3 +33,4 @@ override.tf.json
 private/notes.txt
 private/udacity_rsa
 private/udacity_rsa.pub
+terraform/environments/test/.terraform.lock.hcl
