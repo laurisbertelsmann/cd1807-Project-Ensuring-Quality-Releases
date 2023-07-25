@@ -8,9 +8,10 @@ variable "tenant_id" {}
 variable "location" {}
 variable "resource_group" {}
 variable "application_type" {}
+variable "resource_group_name" {}
 
 # Network
-variable virtual_network_name {}
-variable address_prefix_test {}
-variable address_space {}
+variable "virtual_network_name" {}
+variable "address_prefix_test" {}
+variable "address_space" {}
 

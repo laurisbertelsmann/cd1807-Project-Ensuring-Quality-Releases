@@ -11,6 +11,13 @@
 # Crash log files
 crash.log
 
+# my private files
+private/
+*.DS_Store*
+
+#venv
+venv/
+
 # Ignore any .tfvars files that are generated automatically for each Terraform run. Most
 # .tfvars files are managed as part of configuration and so should be included in
 # version control.
@@ -23,3 +30,6 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+private/notes.txt
+private/udacity_rsa
+private/udacity_rsa.pub
