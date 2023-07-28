@@ -74,8 +74,8 @@ stages:
         command: 'apply'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
         environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
-        commandOptions: '-var="environment_name=$(environmentName)"'
-        environmentServiceNameAzur: '$(azureServiceConnectionId)'
+        # commandOptions: '-var="environment_name=$(environmentName)"'
+        # environmentServiceNameAzur: '$(azureServiceConnectionId)'
 
 
 #--------------------------------------------#
