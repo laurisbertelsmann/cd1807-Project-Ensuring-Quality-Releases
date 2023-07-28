@@ -6,8 +6,8 @@ tenant_id = "952b6c95-efb1-4b40-bd4d-9cac3eecd314"
 
 # Resource Group/Location
 location = "East US"
-resource_group = "rg-udacity-storage-project3-3"
-resource_group_name = "rg-udacity-storage-project3-3"
+resource_group = "rg-udacity-storage-project3-2"
+resource_group_name = "rg-udacity-storage-project3-2" 
 application_type = "myDevopspApp"
 
 # Network
