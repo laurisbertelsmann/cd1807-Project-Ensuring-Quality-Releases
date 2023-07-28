@@ -68,14 +68,14 @@ stages:
         # environmentServiceNameAzur: '$(azureServiceConnectionId)'
 
 
-        task: TerraformTaskV3@3
-        displayName: Terraform destroy
-        inputs:
-          provider: 'azurerm'
-          command: 'destroy'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
-          environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
-   
+    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+      displayName: Terraform destroy
+      inputs:
+        provider: 'azurerm'
+        command: 'destroy'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
+        environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
+  
 
     # - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
     #   displayName: Terraform apply
