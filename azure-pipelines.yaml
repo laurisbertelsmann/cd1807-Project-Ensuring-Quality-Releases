@@ -68,24 +68,24 @@ stages:
         # environmentServiceNameAzur: '$(azureServiceConnectionId)'
 
 
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
-      displayName: Terraform destroy
-      inputs:
-        provider: 'azurerm'
-        command: 'destroy'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
-        environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
-  
-
     # - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
-    #   displayName: Terraform apply
+    #   displayName: Terraform destroy
     #   inputs:
     #     provider: 'azurerm'
-    #     command: 'apply'
+    #     command: 'destroy'
     #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
     #     environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
-    #     # commandOptions: '-var="environment_name=$(environmentName)"'
-    #     # environmentServiceNameAzur: '$(azureServiceConnectionId)'
+  
+
+    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+      displayName: Terraform apply
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
+        environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
+        # commandOptions: '-var="environment_name=$(environmentName)"'
+        # environmentServiceNameAzur: '$(azureServiceConnectionId)'
 
 
 #--------------------------------------------#
@@ -153,7 +153,7 @@ stages:
     - task: CmdLine@2
       displayName: Install Newman
       inputs:
-        script: 'sudo apt install -g newman'
+        script: 'sudo apt install newman -y'
         workingDirectory: $(System.DefaultWorkingDirectory)
     
     
@@ -165,7 +165,6 @@ stages:
       inputs:
         script: 'newman run TestSuite.Data-Validation.json -e Test.environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
-    
     
     
     # Postman Regression Test Suite    
