@@ -153,7 +153,7 @@ stages:
     - task: CmdLine@2
       displayName: Install Newman
       inputs:
-        script: 'sudo apt install newman -y'
+        script: 'sudo apt update && sudo apt install newman -y'
         workingDirectory: $(System.DefaultWorkingDirectory)
     
     
