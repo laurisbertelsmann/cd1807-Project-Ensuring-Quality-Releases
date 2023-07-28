@@ -64,8 +64,8 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
         environmentServiceNameAzureRM: '$(azureServiceConnectionId)'
-        commandOptions: '-var="environment_name=$(environmentName)"'
-        environmentServiceNameAzur: '$(azureServiceConnectionId)'
+        # commandOptions: '-var="environment_name=$(environmentName)"'
+        # environmentServiceNameAzur: '$(azureServiceConnectionId)'
 
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
       displayName: Terraform apply
