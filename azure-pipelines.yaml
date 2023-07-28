@@ -29,12 +29,12 @@ stages:
     steps:
     #--------------------------------------------#  
     # Use Terraform to create the Infrastructure and install Terraform on the pipeline agent.
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+    - task: TerraformInstaller@1
       displayName: 'Terrafom installation'
       inputs:
         terraformVersion: 'latest'
     
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+    - task: TerraformTaskV4@4
       displayName: 'Terrafom init'
       inputs:
         provider: 'azurerm'
@@ -46,7 +46,7 @@ stages:
         backendAzureRmContainerName: 'tfstate'
         backendAzureRmKey: 'test.terraform.tfstate'
       
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+    - task: TerraformTaskV4@4
       displayName: Terraform validate
       inputs:
         provider: 'azurerm'
@@ -54,7 +54,7 @@ stages:
         command: 'validate'
 
   
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+    - task: TerraformTaskV4@4
       displayName: Terraform plan
       inputs:
         provider: 'azurerm'
@@ -64,7 +64,7 @@ stages:
         commandOptions: '-var="environment_name=$(environmentName)"'
         environmentServiceNameAzur: '$(azureServiceConnectionId)'
 
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+    - task: TerraformTaskV4@4
       displayName: Terraform apply
       inputs:
         provider: 'azurerm'
