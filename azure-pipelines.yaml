@@ -151,10 +151,18 @@ stages:
     # Postman - Install Newman    
     # ToDo: Update the command and verify the working directory
     - task: CmdLine@2
+      displayName: Install Nodejs
+      inputs:
+        script: 'sudo apt update && sudo apt install nodejs -y'
+        workingDirectory: $(System.DefaultWorkingDirectory)
+
+    # ToDo: install newman
+    - task: CmdLine@2
       displayName: Install Newman
       inputs:
-        script: 'sudo apt update && sudo apt install newman -y'
+        script: 'npm install -g newman'
         workingDirectory: $(System.DefaultWorkingDirectory)
+    
     
     
     # Postman Data Validation Test Suite    
