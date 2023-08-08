@@ -102,21 +102,21 @@ stages:
         script: 'newman -v'
     
     
-    
-    # Postman Data Validation Test Suite    
-    # ToDo: Verify the working directory
-    - task: CmdLine@2
-      displayName: Run Data Validation Tests
-      continueOnError: true
-      inputs:
-        script: 'newman run regression.postman_collection.json -e regression-variables.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
-    
-    
-    # Postman Regression Test Suite    
+         
+    # Postman Regression Test Suite     
     # ToDo: Verify the working directory
     - task: CmdLine@2
       displayName: Run Regression Tests
+      continueOnError: true
+      inputs:
+        script: 'newman run regression.postman_collection.json -e regression-variables.postman_environment.json --reporter-junit-export TEST-Regression.xml --delay-request 50000'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+    
+    
+    # Postman Data Validation Test Suite   
+    # ToDo: Verify the working directory
+    - task: CmdLine@2
+      displayName: Run Data Validation Tests
       continueOnError: true
       inputs:
         script: 'newman run TestSuite.Regression.json -e Test.environment.json --reporters cli,junit --reporter-junit-export TEST-Regression.xml'
