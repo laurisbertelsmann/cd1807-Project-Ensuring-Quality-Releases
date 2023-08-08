@@ -153,8 +153,13 @@ stages:
     - task: CmdLine@2
       displayName: Install Nodejs
       inputs:
-        script: 'sudo apt update && sudo apt install nodejs -y'
+        script: 'sudo apt update && sudo apt upgrade -y && sudo apt install nodejs -y && sudo apt install npm -y'
         workingDirectory: $(System.DefaultWorkingDirectory)
+      
+    - task: CmdLine@2
+      displayName: 'Check Node Version'
+      inputs:
+        script: 'nodejs --version'
 
     # ToDo: install newman
     - task: CmdLine@2
@@ -162,6 +167,11 @@ stages:
       inputs:
         script: 'npm install -g newman'
         workingDirectory: $(System.DefaultWorkingDirectory)
+    
+    - task: CmdLine@2
+      displayName: 'check Newman version'
+      inputs:
+        script: 'newman -v'
     
     
     
