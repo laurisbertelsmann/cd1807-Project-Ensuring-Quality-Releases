@@ -105,12 +105,12 @@ stages:
          
     # # Postman Regression Test Suite     
     # # ToDo: Verify the working directory
-    # - task: CmdLine@2
-    #   displayName: Run Regression Tests
-    #   continueOnError: true
-    #   inputs:
-    #     script: 'newman run regression.postman_collection.json -e regression-variables.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-Regression.xml --delay-request 120000'
-    #     workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+    - task: CmdLine@2
+      displayName: Run Regression Tests
+      continueOnError: true
+      inputs:
+        script: 'newman run regression.postman_collection.json -e regression-variables.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-Regression.xml --delay-request 60000'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
     
     
     # Postman Data Validation Test Suite   
@@ -119,9 +119,16 @@ stages:
       displayName: Run Data Validation Tests
       continueOnError: true
       inputs:
-        script: 'newman run validation.postman_collection.json -e validation_variables.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml --delay-request 120000'
+        script: 'newman run validation.postman_collection.json -e validation_variables.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml --delay-request 60000'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
     
+
+    - task: CmdLine@2
+      displayName: 'Check generated Files'
+      continueOnError: true
+      inputs:
+        script: 'ls -la'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
     
     # Postman - Publish Results 
     # ToDo: Complete the task as explained here: https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/test/publish-test-results?view=azure-devops&tabs=trx%2Cyaml#yaml-snippet
@@ -129,6 +136,8 @@ stages:
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: '*.xml'
-        searchFolder: '$(System.DefaultWorkingDirectory)'
+        searchFolder: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
         mergeTestResults: true
         testRunTitle: 'Postman Test Results'
+
+    
