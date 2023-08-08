@@ -34,3 +34,5 @@ private/udacity_rsa
 private/udacity_rsa.pub
 terraform/environments/test/.terraform.lock.hcl
 automatedtesting/jmeter/HTTP Request.jmx
+automatedtesting/postman/TestSuite.Data-Validation.json
+automatedtesting/postman/TestSuite.Regression.json
