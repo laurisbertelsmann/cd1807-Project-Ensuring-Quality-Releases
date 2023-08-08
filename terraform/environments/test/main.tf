@@ -18,6 +18,7 @@ module "resource_group" {
   resource_group = var.resource_group
   location       = var.location
 }
+
 module "network" {
   source               = "../../modules/network"
   address_space        = var.address_space
@@ -51,4 +52,14 @@ module "publicip" {
   application_type = var.application_type
   resource_type    = "publicip"
   resource_group   = module.resource_group.resource_group_name
+}
+
+module "vm" {
+  source = "../../modules/vm"
+  location = "${var.location}"
+  resource_group = "${var.resource_group}"
+  vm_name = "${var.vm_name}"
+  subnet_id = "${module.network.subnet_id_test}"
+  public_ip = "${module.publicip.public_ip_address_id}"
+  
 }

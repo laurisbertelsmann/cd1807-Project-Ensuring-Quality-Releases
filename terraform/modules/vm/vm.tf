@@ -1,35 +1,37 @@
-resource "azurerm_network_interface" "" {
-  name                = ""
-  location            = ""
-  resource_group_name = ""
+resource "azurerm_network_interface" "vm_nic" {
+  name                = "${var.vm_name}-nic"
+  location            = var.location
+  resource_group_name = var.resource_group
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = ""
+    subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = ""
+    public_ip_address_id          = var.public_ip
   }
 }
 
-resource "azurerm_linux_virtual_machine" "" {
-  name                = ""
-  location            = ""
-  resource_group_name = ""
+data "azurerm_image" "custom-image" {
+  name                = "udacity-vm-v2" 
+  resource_group_name = "rg-udacity-storage-final-project"
+}
+
+
+
+resource "azurerm_linux_virtual_machine" "linux-vm" {
+  name                = "${var.vm_name}"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group}"
   size                = "Standard_DS2_v2"
-  admin_username      = ""
-  network_interface_ids = []
-  admin_ssh_key {
-    username   = "lauris"
-    public_key = file("~/.ssh/udacity_rsa.pub")
-  }
+  network_interface_ids = [azurerm_network_interface.vm_nic.id]
+  source_image_id = data.azurerm_image.custom-image.id
+  disable_password_authentication = false
+  admin_username      = "lauris"
+  admin_password = "Udacity@123"
+
+
   os_disk {
     caching           = "ReadWrite"
     storage_account_type = "Standard_LRS"
-  }
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
   }
 }
