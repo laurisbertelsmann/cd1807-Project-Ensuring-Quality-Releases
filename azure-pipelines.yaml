@@ -8,7 +8,7 @@ trigger:
 
 # ToDo: Replace the agent pool name, if you are using Udacity Cloud lab. 
 # Otherwise, comment out the line below. 
-#pool: MyAgentPool
+pool: MyAgentPool
 
 variables:
   python.version: '3.7.6'
@@ -44,10 +44,10 @@ stages:
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
         backendServiceArm: '$(azureServiceConnectionId)'
-        backendAzureRmResourceGroupName: 'tfsrg-udacity-storage-project3-2'
-        backendAzureRmStorageAccountName: 'tfstate821628921'
+        backendAzureRmResourceGroupName: 'rg-udacity-storage-final-project'
+        backendAzureRmStorageAccountName: 'tfstate2859914005'
         backendAzureRmContainerName: 'tfstate'
-        backendAzureRmKey: 'test.terraform.tfstate'
+        backendAzureRmKey: 'key1'
       
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
       displayName: Terraform validate
