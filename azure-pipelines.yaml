@@ -78,39 +78,39 @@ stages:
 #--------------------------------------------#    
     # Postman - Install Newman    
     # ToDo: Update the command and verify the working directory
-    - task: CmdLine@2
-      displayName: Install Nodejs
-      inputs:
-        script: 'sudo apt update && sudo apt upgrade -y && sudo apt install nodejs -y && sudo apt install npm -y'
-        workingDirectory: $(System.DefaultWorkingDirectory)
+    # - task: CmdLine@2
+    #   displayName: Install Nodejs
+    #   inputs:
+    #     script: 'sudo apt update && sudo apt upgrade -y && sudo apt install nodejs -y && sudo apt install npm -y'
+    #     workingDirectory: $(System.DefaultWorkingDirectory)
       
-    - task: CmdLine@2
-      displayName: 'Check Node Version'
-      inputs:
-        script: 'nodejs --version'
+    # - task: CmdLine@2
+    #   displayName: 'Check Node Version'
+    #   inputs:
+    #     script: 'nodejs --version'
 
-    # ToDo: install newman
-    - task: CmdLine@2
-      displayName: Install Newman
-      inputs:
-        script: 'sudo npm install -g newman'
-        workingDirectory: $(System.DefaultWorkingDirectory)
+    # # ToDo: install newman
+    # - task: CmdLine@2
+    #   displayName: Install Newman
+    #   inputs:
+    #     script: 'sudo npm install -g newman'
+    #     workingDirectory: $(System.DefaultWorkingDirectory)
     
-    - task: CmdLine@2
-      displayName: 'check Newman version'
-      inputs:
-        script: 'newman -v'
+    # - task: CmdLine@2
+    #   displayName: 'check Newman version'
+    #   inputs:
+    #     script: 'newman -v'
     
     
          
-    # Postman Regression Test Suite     
-    # ToDo: Verify the working directory
-    - task: CmdLine@2
-      displayName: Run Regression Tests
-      continueOnError: true
-      inputs:
-        script: 'newman run regression.postman_collection.json -e regression-variables.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-Regression.xml --delay-request 120000'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
+    # # Postman Regression Test Suite     
+    # # ToDo: Verify the working directory
+    # - task: CmdLine@2
+    #   displayName: Run Regression Tests
+    #   continueOnError: true
+    #   inputs:
+    #     script: 'newman run regression.postman_collection.json -e regression-variables.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-Regression.xml --delay-request 120000'
+    #     workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
     
     
     # Postman Data Validation Test Suite   
@@ -119,7 +119,7 @@ stages:
       displayName: Run Data Validation Tests
       continueOnError: true
       inputs:
-        script: 'newman run TestSuite.Data-Validation.json -e Test.environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml'
+        script: 'newman run validation.postman_collection.json -e validation_variables.postman_environment.json --reporters cli,junit --reporter-junit-export TEST-DataValidation.xml --delay-request 120000'
         workingDirectory: '$(System.DefaultWorkingDirectory)/automatedtesting/postman'
     
     

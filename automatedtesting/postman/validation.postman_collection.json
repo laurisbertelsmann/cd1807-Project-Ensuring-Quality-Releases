@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "18045490-9dbd-4844-950f-c16de7faacc5",
+		"name": "validation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28243393"
+	},
+	"item": [
+		{
+			"name": "Create Employee test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"created_id\", jsonData.data.id);\r",
+							"\r",
+							"pm.test(\"Response was Successful\", function () {\r",
+							"    pm.expect(jsonData).property(\"status\", \"success\");\r",
+							"});\r",
+							"\r",
+							"pm.test('Employee name check', function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('name') == pm.variables.get(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test('Employee age check', function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('age') == pm.variables.get(\"age\");\r",
+							"});\r",
+							"\r",
+							"pm.test('Employee salary check', function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('salary') == pm.variables.get(\"salary\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":{{name}},\r\n    \"salary\":{{salary}},\r\n    \"age\":{{age}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/create",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Employee test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test('Data of employees is returned', function() {\r",
+							"  pm.expect(jsonData).to.have.property('data');\r",
+							"});\r",
+							"\r",
+							"pm.test('Object contains ID key', function() {\r",
+							"  pm.expect(jsonData.data[0]).to.have.property('id');\r",
+							"});\r",
+							"\r",
+							"pm.test('Our Created Employee exists', function() {\r",
+							"  pm.expect(jsonData.data[0]).to.have.property('id') == pm.variables.get(\"created_id\");\r",
+							"});\r",
+							"pm.test('Our Employee Name is correctly set', function() {\r",
+							"  pm.expect(jsonData.data[0]).to.have.property('employee_name') == pm.variables.get(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test('Our Employee Salary is correctly set', function() {\r",
+							"  pm.expect(jsonData.data[0]).to.have.property('employee_salary') == pm.variables.get(\"salary\");\r",
+							"});\r",
+							"\r",
+							"pm.test('Our Employee age is correctly set', function() {\r",
+							"  pm.expect(jsonData.data[0]).to.have.property('employee_age') == pm.variables.get(\"age\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{api_url}}/employees",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response was Successful\", function () {\r",
+							"    pm.expect(jsonData).property(\"status\", \"success\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Our created employee has the NEW name\", function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('name') == pm.variables.get(\"new_name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Our created employee has the NEW Age\", function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('age') == pm.variables.get(\"new_age\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Our created employee has the NEW Salary\", function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('salary') == pm.variables.get(\"new_salary\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":{{new_name}},\r\n    \"salary\":{{new_salary}},\r\n    \"age\":{{new_age}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/update/{{created_id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"update",
+						"{{created_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee validation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response was successful\", function () {\r",
+							"    pm.expect(jsonData).property(\"status\", \"success\");\r",
+							"});\r",
+							"pm.test('Name field property exists', function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('employee_name');\r",
+							"});\r",
+							"pm.test('Age field property exists', function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('employee_age');\r",
+							"});\r",
+							"pm.test('Salary field property exists', function() {\r",
+							"  pm.expect(jsonData.data).to.have.property('employee_salary');\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/employee/1",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"employee",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete employee Validation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response was Successful\", function () {\r",
+							"    pm.expect(jsonData).property(\"status\", \"success\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/delete/{{created_id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"delete",
+						"{{created_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
