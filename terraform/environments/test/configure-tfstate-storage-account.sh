@@ -1,5 +1,5 @@
 #!/bin/bash
-RESOURCE_GROUP_NAME="rg-udacity-storage-project3"
+RESOURCE_GROUP_NAME="rg-udacity-storage-final-project"
 STORAGE_ACCOUNT_NAME="tfstate$RANDOM$RANDOM"
 CONTAINER_NAME="tfstate"
 

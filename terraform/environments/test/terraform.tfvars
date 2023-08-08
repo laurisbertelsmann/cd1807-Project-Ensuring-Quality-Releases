@@ -6,11 +6,11 @@ tenant_id = "952b6c95-efb1-4b40-bd4d-9cac3eecd314"
 
 # Resource Group/Location
 location = "East US"
-resource_group = "rg-udacity-storage-project3-3"
-resource_group_name = "rg-udacity-storage-project3-3" 
-application_type = "myDevopspApp"
+resource_group = "rg-udacity-project-final"
+resource_group_name = "rg-udacity-project-final" 
+application_type = "myDevopspApp3"
 
 # Network
-virtual_network_name = "vnet-udacity-storage-project3"
+virtual_network_name = "vnet-udacity-project-final"
 address_space = ["10.5.0.0/16"]
 address_prefix_test = "10.5.1.0/24"
