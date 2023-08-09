@@ -186,7 +186,7 @@ stages:
     
     # user my agent pool named: MyAgentPool
     pool: 
-      name: MyAgentPool
+      # name: MyAgentPool
       # vmImage: $(vmImageName)
       # vmImage: 'ubuntu-latest'   
     environment:  'test-vm'
