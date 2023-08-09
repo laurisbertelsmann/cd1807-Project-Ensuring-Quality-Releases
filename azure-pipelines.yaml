@@ -185,8 +185,9 @@ stages:
     # displayName: Deploy FakeRestAPI
     
     # user my agent pool named: MyAgentPool
-    pool:
-      vmImage: $(vmImageName)
+    pool: 
+      name: MyAgentPool
+      # vmImage: $(vmImageName)
       # vmImage: 'ubuntu-latest'   
     environment:  'test-vm'
       # name: $(environmentName)
