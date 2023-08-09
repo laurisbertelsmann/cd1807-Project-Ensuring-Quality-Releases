@@ -242,7 +242,7 @@ stages:
               targetType: 'inline'
               script: |           
                 #! /bin/bash
-                
+                  
                 sudo apt-get upgrade -y
                 sudo apt-get install python3-pip -y
                 sudo apt-get install unzip -y
@@ -265,6 +265,5 @@ stages:
                 fi
                 export PATH=$PATH:/home/testuser/app
                 echo "Starting Selenium Tests"
-                python3 add_remove_from_cart.py >> selenium.log
+                python3 login.py >> selenium.log
                 echo "Completed Selenium Tests. Check selenium.log for results."
-
