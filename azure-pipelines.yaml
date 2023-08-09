@@ -51,12 +51,12 @@ stages:
         backendAzureRmContainerName: 'tfstate'
         backendAzureRmKey: 'key1'
       
-    - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
-      displayName: Terraform validate
-      inputs:
-        provider: 'azurerm'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
-        command: 'validate'
+    # - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+    #   displayName: Terraform validate
+    #   inputs:
+    #     provider: 'azurerm'
+    #     workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
+    #     command: 'validate'
 
   
     # - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
@@ -145,32 +145,32 @@ stages:
     ####################################################### 
 
  #--------------------------------------------#
-# - stage: ArchiveApp
-#   jobs:
-#     - job: Archive
-#       steps:
-#         - task: ArchiveFiles@2
-#           displayName: 'Archive Selenium'
-#           inputs:
-#             rootFolderOrFile: 'automatedtesting/selenium'
-#             includeRootFolder: false
-#             archiveType: 'zip'
-#             archiveFile: '$(Build.ArtifactStagingDirectory)/selenium.zip'
-#         - publish: '$(Build.ArtifactStagingDirectory)/selenium.zip'
-#           displayName: 'Upload selenium Package'
-#           artifact: selenium
+- stage: ArchiveApp
+  jobs:
+    - job: Archive
+      steps:
+        - task: ArchiveFiles@2
+          displayName: 'Archive Selenium'
+          inputs:
+            rootFolderOrFile: 'automatedtesting/selenium'
+            includeRootFolder: false
+            archiveType: 'zip'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/selenium.zip'
+        - publish: '$(Build.ArtifactStagingDirectory)/selenium.zip'
+          displayName: 'Upload selenium Package'
+          artifact: selenium
 
 
-#         - task: ArchiveFiles@2
-#           displayName: 'Archive FakeRestAPI'
-#           inputs:
-#             rootFolderOrFile: 'automatedtesting/jmeter/fakerestapi'
-#             includeRootFolder: false
-#             archiveType: 'zip'
-#             archiveFile: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
-#         - publish: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
-#           displayName: 'Upload fakerrestapi Package'
-#           artifact: fakerapi
+        - task: ArchiveFiles@2
+          displayName: 'Archive FakeRestAPI'
+          inputs:
+            rootFolderOrFile: 'automatedtesting/jmeter/fakerestapi'
+            includeRootFolder: false
+            archiveType: 'zip'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
+        - publish: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
+          displayName: 'Upload fakerrestapi Package'
+          artifact: fakerapi
 
 
 #--------------------------------------------#  
