@@ -26,7 +26,7 @@ stages:
 #--------------------------------------------#  
 # Terraform - Infrastructure as Code
 #--------------------------------------------#    
-- stage: Build Infrastructure
+- stage: Build-Infrastructure
   jobs:
   - job: BuildInfrastructure
     steps:
