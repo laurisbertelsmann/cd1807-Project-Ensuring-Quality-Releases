@@ -198,8 +198,8 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App'
             inputs:
-              # azureSubscription: '1142ac1e-0bb8-405d-b807-20096ea15775'   
-              azureSubscription: '5dc66109-21e8-41d0-93b3-688f46cd4c4b'   
+              azureSubscription: '1142ac1e-0bb8-405d-b807-20096ea15775'   
+              # azureSubscription: '5dc66109-21e8-41d0-93b3-688f46cd4c4b'   
               appName: 'myDevopspApp3-AppService'               # ToDo
               appType: 'webAppLinux'
               resourceGroupName: 'rg-udacity-project-final'
