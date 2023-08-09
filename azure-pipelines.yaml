@@ -270,8 +270,10 @@ stages:
                 cd $(Pipeline.Workspace)/selenium/
                 unzip selenium.zip
                 sudo mkdir logs
-                sudo chmod +x login.py
-                sudo python3.8 login.py > selenium_logs
+                # sudo chmod +x login.py
+                echo "Starting Selenium Tests"
+                sudo python3.8 login.py 2>&1 | tee selenium_logs
+                echo "Completed Selenium Tests. Check selenium_logs for results."
                 ls -la
                 sudo mv selenium_logs logs/selenium_logs
                 ls -la /logs
