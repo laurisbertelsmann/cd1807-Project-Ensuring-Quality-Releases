@@ -242,20 +242,20 @@ stages:
               targetType: 'inline'
               script: |           
                 #! /bin/bash
-                  
+                echo "updating system and installing dependencies"  
                 sudo apt-get upgrade -y
                 sudo apt-get install python3-pip -y
                 sudo apt-get install unzip -y
                 sudo apt-get install -y chromium-browser
                 pip3 install selenium
                 # cd ~/
-                # DIR=/home/devopsagent/app
-                # if [ ! -d "$DIR" ]; then
-                #     mkdir app
-                # fi
-                # mv /home/devopsagent/azagent/_work/1/drop-uitests/$(Build.BuildId)-uitests.zip app
-                # cd app
-                # unzip -o $(Build.BuildId)-uitests.zip
+                DIR=/home/devopsagent/app
+                if [ ! -d "$DIR" ]; then
+                  mkdir app
+                fi
+                
+                cd app
+                
                 FILE=/home/devopsagent/app/chromedriver_linux64.zip
                 if [ ! -f "$FILE" ]; then
                     LATEST=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
@@ -267,6 +267,7 @@ stages:
                 # echo "Starting Selenium Tests"
                 # python3 ./automatedtesting/selenium/login.py >> selenium.log
                 # echo "Completed Selenium Tests. Check selenium.log for results."
+                echo "unzipping selenium.zip"
                 cd $(Pipeline.Workspace)/selenium/
                 unzip selenium.zip
                 sudo mkdir logs
