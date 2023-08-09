@@ -180,7 +180,9 @@ stages:
   # Deploy FakeRestAPI Web App
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
-    displayName: Deploy FakeRestAPI
+    # displayName: Deploy FakeRestAPI
+    pool:
+      vmImage: 'Ubuntu-18.04'   
     environment: 
       # name: $(environmentName)
       name: 'test-vm'
@@ -196,7 +198,7 @@ stages:
               appName: 'myDevopspApp3-AppService'               # ToDo
               appType: 'webAppLinux'
               resourceGroupName: 'rg-udacity-project-final'
-              package: '$(Pipeline.Workspace)/fakerapi-$(Build.BuildId).zip'   # ToDo: Use the published zip artifact. 
+              package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'   # ToDo: Use the published zip artifact. 
               deploymentMethod: auto
               slotName: 'production'
               deployToSlotOrASE: true
