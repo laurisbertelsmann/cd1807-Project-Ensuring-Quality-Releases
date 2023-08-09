@@ -263,7 +263,19 @@ stages:
                     unzip -o chromedriver_linux64.zip
                     sudo ln -s $PWD/chromedriver /usr/local/bin/chromedriver
                 fi
-                export PATH=$PATH:/home/devopsagent/app
-                echo "Starting Selenium Tests"
-                python3 ./automatedtesting/selenium/login.py >> selenium.log
-                echo "Completed Selenium Tests. Check selenium.log for results."
+                # export PATH=$PATH:/home/devopsagent/app
+                # echo "Starting Selenium Tests"
+                # python3 ./automatedtesting/selenium/login.py >> selenium.log
+                # echo "Completed Selenium Tests. Check selenium.log for results."
+                cd $(Pipeline.Workspace)/selenium/
+                unzip selenium.zip
+                sudo mkdir logs
+                sudo chmod +x login.py
+                sudo python3 login.py > selenium_logs
+                ls -la
+                sudo mv selenium_logs logs/selenium_logs
+                ls -la /logs
+                sudo mv logs/selenium_logs logs/log-sel.txt
+                ls -la /logs
+                sudo mv logs/log-sel.txt /var/log/log-sel.txt
+                ls -la /var/log/
