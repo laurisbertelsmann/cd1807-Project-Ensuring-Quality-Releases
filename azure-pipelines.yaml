@@ -193,7 +193,7 @@ stages:
             inputs:
               azureSubscription: '5dc66109-21e8-41d0-93b3-688f46cd4c4b'     # ToDo
               appName: 'myDevopspApp3-AppService'               # ToDo
-              appType: webApp
+              appType: 'webAppLinux'
               resourceGroupName: 'rg-udacity-project-final'
               package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'   # ToDo: Use the published zip artifact. 
           #--------------------------------------------#    
