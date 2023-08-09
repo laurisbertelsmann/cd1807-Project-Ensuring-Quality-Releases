@@ -196,7 +196,7 @@ stages:
               appName: 'myDevopspApp3-AppService'               # ToDo
               appType: 'webAppLinux'
               resourceGroupName: 'rg-udacity-project-final'
-              package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'   # ToDo: Use the published zip artifact. 
+              package: '$(Pipeline.Workspace)/fakerapi-$(Build.BuildId).zip'   # ToDo: Use the published zip artifact. 
               deploymentMethod: auto
               slotName: 'production'
               deployToSlotOrASE: true
