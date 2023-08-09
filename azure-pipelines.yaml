@@ -181,7 +181,12 @@ stages:
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
     # displayName: Deploy FakeRestAPI
-    pool: MyAgentPool
+    
+    # user my agent pool named: MyAgentPool
+    pool:
+      name: MyAgentPool
+      
+
       
       # vmImage: 'ubuntu-latest'   
     environment:  'test-vm'
