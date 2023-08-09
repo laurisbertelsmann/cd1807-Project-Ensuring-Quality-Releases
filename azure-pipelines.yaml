@@ -145,32 +145,32 @@ stages:
     ####################################################### 
 
  #--------------------------------------------#
-- stage: ArchiveApp
-  jobs:
-    - job: Archive
-      steps:
-        - task: ArchiveFiles@2
-          displayName: 'Archive Selenium'
-          inputs:
-            rootFolderOrFile: 'automatedtesting/selenium'
-            includeRootFolder: false
-            archiveType: 'zip'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/selenium.zip'
-        - publish: '$(Build.ArtifactStagingDirectory)/selenium.zip'
-          displayName: 'Upload selenium Package'
-          artifact: selenium
+# - stage: ArchiveApp
+#   jobs:
+#     - job: Archive
+#       steps:
+#         - task: ArchiveFiles@2
+#           displayName: 'Archive Selenium'
+#           inputs:
+#             rootFolderOrFile: 'automatedtesting/selenium'
+#             includeRootFolder: false
+#             archiveType: 'zip'
+#             archiveFile: '$(Build.ArtifactStagingDirectory)/selenium.zip'
+#         - publish: '$(Build.ArtifactStagingDirectory)/selenium.zip'
+#           displayName: 'Upload selenium Package'
+#           artifact: selenium
 
 
-        - task: ArchiveFiles@2
-          displayName: 'Archive FakeRestAPI'
-          inputs:
-            rootFolderOrFile: 'automatedtesting/jmeter/fakerestapi'
-            includeRootFolder: false
-            archiveType: 'zip'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
-        - publish: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
-          displayName: 'Upload fakerrestapi Package'
-          artifact: fakerapi
+#         - task: ArchiveFiles@2
+#           displayName: 'Archive FakeRestAPI'
+#           inputs:
+#             rootFolderOrFile: 'automatedtesting/jmeter/fakerestapi'
+#             includeRootFolder: false
+#             archiveType: 'zip'
+#             archiveFile: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
+#         - publish: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
+#           displayName: 'Upload fakerrestapi Package'
+#           artifact: fakerapi
 
 
 #--------------------------------------------#  
@@ -182,10 +182,7 @@ stages:
   # Deploy FakeRestAPI Web App
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
-    # displayName: Deploy FakeRestAPI
-    
-    # user my agent pool named: MyAgentPool
-   
+  
     pool: MyAgentPool
     # pool: 
     #   # name: MyAgentPool
@@ -230,9 +227,7 @@ stages:
 # ToDo: 
   - deployment: VMDeploy
     displayName: Selenium Tests
-    environment:
-      name:         'test-vm'
-      resourceType: VirtualMachine
+    environment: 'test-vm'
     strategy:
       runOnce:
         deploy:
