@@ -183,10 +183,10 @@ stages:
     # displayName: Deploy FakeRestAPI
     pool:
       vmImage: 'ubuntu-latest'   
-    environment: 
+    environment:  'test-vm'
       # name: $(environmentName)
       # name: 'test-vm'
-      resourceType: VirtualMachine  
+      # resourceType: VirtualMachine  
     strategy:
       runOnce:
         deploy:
