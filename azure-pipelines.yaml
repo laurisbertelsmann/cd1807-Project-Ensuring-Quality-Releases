@@ -182,7 +182,8 @@ stages:
   - deployment: FakeRestAPI
     displayName: Deploy FakeRestAPI
     environment: 
-      name: $(environmentName)
+      # name: $(environmentName)
+      name: 'test-vm'
       resourceType: VirtualMachine  
     strategy:
       runOnce:
@@ -199,7 +200,7 @@ stages:
               deploymentMethod: auto
               slotName: 'production'
               deployToSlotOrASE: true
-              
+
           #--------------------------------------------#    
           # # Run JMeter test suite against the App Service
           # - task: CmdLine@2
