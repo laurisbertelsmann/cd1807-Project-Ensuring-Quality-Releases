@@ -196,6 +196,10 @@ stages:
               appType: 'webAppLinux'
               resourceGroupName: 'rg-udacity-project-final'
               package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'   # ToDo: Use the published zip artifact. 
+              deploymentMethod: auto
+              slotName: 'production'
+              deployToSlotOrASE: true
+              
           #--------------------------------------------#    
           # # Run JMeter test suite against the App Service
           # - task: CmdLine@2
