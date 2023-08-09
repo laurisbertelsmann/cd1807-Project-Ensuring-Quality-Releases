@@ -211,15 +211,17 @@ stages:
 
                    #--------------------------------------------#    
           # # Run JMeter test suite against the App Service
-          # - task: CmdLine@2
-          #   inputs:
-          #     script: |
-          #       wget "https://apache.mirrors.lucidnetworks.net//jmeter/binaries/apache-jmeter-5.2.1.tgz"
-          #       tar -xf apache-jmeter-5.2.1.tgz
-          #       unzip -o $(Build.BuildId)-perftests.zip
-          #       ./apache-jmeter-5.2.1/bin/jmeter -n -t PerformanceTestSuite.jmx -j jmeter.log -f
-          #       cat jmeter.log                                                                          # ToDo: Write your commands
-          #     workingDirectory: $(Pipeline.Workspace)/<artifact>            # ToDo: Use the artifact name from the task above
+          - task: CmdLine@2
+            inputs:
+              script: |
+                wget "https://apache.mirrors.lucidnetworks.net//jmeter/binaries/apache-jmeter-5.2.1.tgz"
+                tar -xf apache-jmeter-5.2.1.tgz
+                unzip -o $(Build.BuildId)-perftests.zip
+                
+                
+                ./apache-jmeter-5.4.3/bin/jmeter -n -t ./automatedtesting/jmeter/stress_test.jmx -Jresdir=automatedtesting/jmeter/test_data.csv -l automatedtesting/jmeter/StressOutput.jtl -e -o ./automatedtesting/jmeter/stress_test_html_report/ -j ./automatedtesting/jmeter/jmeter_stress_test.log  
+                cat ./automatedtesting/jmeter/jmeter_stress_test.log 
+              workingDirectory: $(Pipeline.Workspace)/<artifact>            # ToDo: Use the artifact name from the task above
 
 
 #--------------------------------------------#  
