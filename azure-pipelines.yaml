@@ -234,7 +234,7 @@ stages:
                 
                 
                 ./apache-jmeter-5.4.3/bin/jmeter -n -t ./automatedtesting/jmeter/stress_test.jmx -Jresdir=automatedtesting/jmeter/test_data.csv -l automatedtesting/jmeter/StressOutput.jtl -e -o ./automatedtesting/jmeter/stress_test_html_report/ -j ./automatedtesting/jmeter/jmeter_stress_test.log  
-                cat ./automatedtesting/jmeter/jmeter_stress_test.log 
+                cat ./automatedtesting/jmeter/jmeter_stress_test.log
               workingDirectory: $(Pipeline.Workspace)/drop-perftests      # ToDo: Use the artifact name from the task above
 
 
