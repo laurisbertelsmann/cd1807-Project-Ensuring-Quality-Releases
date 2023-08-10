@@ -191,7 +191,7 @@ stages:
     environment: 
       # name: $(environmentName)
       name: 'test-vm'
-      resourceType: VirtualMachine  
+      # resourceType: VirtualMachine  
     strategy:
       runOnce:
         deploy:
