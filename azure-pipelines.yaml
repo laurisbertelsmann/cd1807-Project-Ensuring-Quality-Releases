@@ -201,10 +201,10 @@ stages:
     displayName: WebApp Deployment
     environment:
       name: 'test-vm'
-      resourceType: VirtualMachine
+      # resourceType: VirtualMachine
       # tags: 'my-env-new'
-          # pool:
-          #   vmImage: 'Ubuntu-latest'
+    pool:
+      vmImage: 'Ubuntu-latest'
     strategy:
       runOnce:
         deploy:
