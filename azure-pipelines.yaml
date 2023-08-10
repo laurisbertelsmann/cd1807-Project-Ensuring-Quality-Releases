@@ -199,17 +199,16 @@ stages:
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
     displayName: WebApp Deployment
-    environment:
-      name: 'test-vm'
-      # resourceType: VirtualMachine
-      # tags: 'my-env-new'
+    environment: 'test-vm'
+
     pool:
-      vmImage: 'Ubuntu-latest'
+      vmImage: 'Ubuntu-18.04'      
     strategy:
       runOnce:
         deploy:
           steps:
           - task: AzureWebApp@1
+            displayName: 'Azure Web App Deploy: myDevopspApp3-AppService'
             inputs:
               azureSubscription: 'udacityDevopsTraining(5dc66109-21e8-41d0-93b3-688f46cd4c4b)'
               appType: 'webAppLinux'
