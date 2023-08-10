@@ -199,8 +199,8 @@ stages:
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
     displayName: WebApp Deployment
-    pool:
-      vmImage: $(vmImageName)      
+    pool: 'MyAgentPool'
+       
     environment: $(environmentName)   # ToDo
     strategy:
       runOnce:
