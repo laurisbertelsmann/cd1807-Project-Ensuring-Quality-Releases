@@ -213,6 +213,11 @@ stages:
               appType: 'webApp'
               appName: 'myDevopspApp3-AppService'
               package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'
+              deploymentMethod: auto
+              deployToSlotOrASE: true
+              resourceGroupName: 'rg-udacity-storage-final-project'
+              slotName: 'production'
+
               # deploymentMethod: auto
           
           # # Run JMeter test suite against the App Service
