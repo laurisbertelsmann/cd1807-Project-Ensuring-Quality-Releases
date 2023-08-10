@@ -262,7 +262,7 @@ stages:
                     wget https://chromedriver.storage.googleapis.com/111.0.5563.64/chromedriver_linux64.zip
                     echo " --> unzipping chromedriver_linux64.zip"
                     unzip -o chromedriver_linux64.zip
-                    sudo ln -s $PWD/chromedriver /usr/local/bin/chromedriver
+                    sudo ln -sf $PWD/chromedriver /usr/local/bin/chromedriver
                 # fi
                 # export PATH=$PATH:/home/devopsagent/app
                 # echo "Starting Selenium Tests"
