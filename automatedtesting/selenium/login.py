@@ -38,6 +38,7 @@ def login (driver, user, password):
 
 def create_driver():
     print_output("Starting the browser...")
+    chrome_options.binary_location = "/usr/local/bin/chromedriver"
     chrome_options = ChromeOptions()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-dev-shm-usage")
