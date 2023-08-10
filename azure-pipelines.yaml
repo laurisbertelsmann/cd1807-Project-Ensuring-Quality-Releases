@@ -189,6 +189,9 @@ stages:
 #--------------------------------------------#  
 # DEPLOYMENT STAGE
 #--------------------------------------------#    
+
+
+
 - stage: DeployFakeRestApi
   jobs:
   #--------------------------------------------#  
@@ -209,18 +212,16 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App'
+          - task: AzureRmWebAppDeployment@4
             inputs:
-              azureSubscription: 'MyServiceCOnnectionName'   
-              # azureSubscription: '5dc66109-21e8-41d0-93b3-688f46cd4c4b'   
-              appName: 'myDevopspApp3-AppService'               # ToDo
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'udacityDevopsTraining(5dc66109-21e8-41d0-93b3-688f46cd4c4b)'
               appType: 'webAppLinux'
-              resourceGroupName: 'rg-udacity-project-final'
-              package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'   # ToDo: Use the published zip artifact. 
-              deploymentMethod: auto
-              slotName: 'production'
+              WebAppName: 'myDevopspApp3-AppService'
               deployToSlotOrASE: true
+              ResourceGroupName: 'rg-udacity-project-final'
+              SlotName: 'production'
+              packageForLinux: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip''
 
                    #--------------------------------------------#    
           # # Run JMeter test suite against the App Service
