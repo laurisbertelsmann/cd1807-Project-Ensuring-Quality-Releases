@@ -223,19 +223,44 @@ stages:
               # deploymentMethod: auto
           
           # # Run JMeter test suite against the App Service
-          
-          - task: CmdLine@2
-            displayName: 'Run JMeter test'
-            inputs:
-              script: |
-                wget "https://apache.mirrors.lucidnetworks.net//jmeter/binaries/apache-jmeter-5.4.3.tgz"
-                tar -xf apache-jmeter-5.4.3.tgz
-                unzip -o $(Build.BuildId)-perftests.zip
-                
-                
-                ./apache-jmeter-5.4.3/bin/jmeter -n -t ./automatedtesting/jmeter/stress_test.jmx -Jresdir=automatedtesting/jmeter/test_data.csv -l automatedtesting/jmeter/StressOutput.jtl -e -o ./automatedtesting/jmeter/stress_test_html_report/ -j ./automatedtesting/jmeter/jmeter_stress_test.log  
-                cat ./automatedtesting/jmeter/jmeter_stress_test.log
-              workingDirectory: $(Pipeline.Workspace)/drop-perftests      # ToDo: Use the artifact name from the task above
+- stage: JMeter
+  jobs:
+    - job: JMeterTesting
+      steps:
+      - task: JMeterInstaller@0
+        inputs:
+          jmeterVersion: '5.4.2'
+
+      - task: Bash@3
+        displayName: JmeterStressTest
+        inputs:
+          targetType: 'inline'
+          script: 'jmeter -n -t automatedtesting/jmeter/stress_test.jmx -Jresdir=automatedtesting/jmeter/test_date.csv -l automatedtesting/jmeter/StressOutput.jtl -e -o automatedtesting/jmeter/stress_report'
+      
+      - task: Bash@3
+        displayName: EnduranceTest
+        inputs:
+          targetType: 'inline'
+          script: 'jmeter -n -t automatedtesting/jmeter/endurance_test.jmx -Jresdir=automatedtesting/jmeter/test_data.csv -l automatedtesting/jmeter/EnduranceOutput.jtl -e -o automatedtesting/jmeter/endurance_report'
+      
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: 'automatedtesting/jmeter'
+          ArtifactName: 'jmeterresults'
+          publishLocation: 'Container'
+
+# - task: CmdLine@2
+#   displayName: 'Run JMeter test'
+#   inputs:
+#     script: |
+#       wget "https://apache.mirrors.lucidnetworks.net//jmeter/binaries/apache-jmeter-5.4.3.tgz"
+#       tar -xf apache-jmeter-5.4.3.tgz
+#       unzip -o $(Build.BuildId)-perftests.zip
+      
+      
+#       ./apache-jmeter-5.4.3/bin/jmeter -n -t ./automatedtesting/jmeter/stress_test.jmx -Jresdir=automatedtesting/jmeter/test_data.csv -l automatedtesting/jmeter/StressOutput.jtl -e -o ./automatedtesting/jmeter/stress_test_html_report/ -j ./automatedtesting/jmeter/jmeter_stress_test.log  
+#       cat ./automatedtesting/jmeter/jmeter_stress_test.log
+#     workingDirectory: $(Pipeline.Workspace)/drop-perftests      # ToDo: Use the artifact name from the task above
 
 
 #--------------------------------------------#  
