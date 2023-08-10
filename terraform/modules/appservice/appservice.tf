@@ -21,7 +21,7 @@ resource "azurerm_windows_web_app" "test" {
   }
 
   app_settings = {
-    WEBSITE_RUN_FROM_PACKAGE = 0,
+    WEBSITE_RUN_FROM_PACKAGE = 1,
     SCM_DO_BUILD_DURING_DEPLOYMENT = true
 
 }
