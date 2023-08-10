@@ -272,7 +272,10 @@ stages:
                 cd $(Pipeline.Workspace)/selenium/
                 unzip -l selenium.zip
                 echo " -->  DONE unzipping selenium.zip"
-                sudo mkdir logs
+                echo " -->  checking python version"
+                python --version
+                which python
+                sudo mkdir -p logs
                 # sudo chmod +x login.py
                 echo " --> Starting Selenium Tests"
                 sudo python3.8 login.py 2>&1 | tee selenium_logs
