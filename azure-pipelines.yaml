@@ -202,7 +202,7 @@ stages:
     environment: 'test-vm'
 
     pool:
-      vmImage: 'linux-test'      
+      vmImage: 'linux-latest'      
     strategy:
       runOnce:
         deploy:
