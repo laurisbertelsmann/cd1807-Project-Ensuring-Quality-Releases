@@ -199,11 +199,9 @@ stages:
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
     displayName: WebApp Deployment
-    environment: 
-      name: 'test-vm'
-      resourceType: VirtualMachine
     pool:
-      name: 'MyAgentPool'
+      vmImage: $(vmImageName)      
+    environment: $(environmentName)   # ToDo
     strategy:
       runOnce:
         deploy:
@@ -211,13 +209,13 @@ stages:
           - task: AzureWebApp@1
             inputs:
               azureSubscription: 'udacityDevopsTraining(5dc66109-21e8-41d0-93b3-688f46cd4c4b)'
-              appType: 'webAppLinux'
+              appType: 'webApp'
               appName: 'myDevopspApp3-AppService'
               package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'
-              deploymentMethod: auto
-              deployToSlotOrASE: true
-              resourceGroupName: 'rg-udacity-project-final'
-              slotName: 'production'
+              # deploymentMethod: auto
+              # deployToSlotOrASE: true
+              # resourceGroupName: 'rg-udacity-project-final'
+              # slotName: 'production'
 
               # deploymentMethod: auto
           
