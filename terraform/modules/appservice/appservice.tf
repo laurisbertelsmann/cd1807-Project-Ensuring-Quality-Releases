@@ -15,9 +15,9 @@ resource "azurerm_windows_web_app" "test" {
   site_config {
     remote_debugging_enabled = true
     always_on = true
-    # application_stack {
-    #   dotnet_version = "v6.0"
-    # }
+    application_stack {
+      dotnet_version = "v6.0"
+    }
   }
 
   app_settings = {

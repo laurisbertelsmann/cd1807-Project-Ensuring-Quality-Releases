@@ -210,7 +210,7 @@ stages:
           - task: AzureWebApp@1
             inputs:
               azureSubscription: 'udacityDevopsTraining(5dc66109-21e8-41d0-93b3-688f46cd4c4b)'
-              appType: 'webApp'
+              appType: 'webAppLinux'
               appName: 'myDevopspApp3-AppService'
               package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'
               deploymentMethod: auto
