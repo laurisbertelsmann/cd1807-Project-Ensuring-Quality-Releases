@@ -164,7 +164,7 @@ stages:
         - task: ArchiveFiles@2
           displayName: 'Archive FakeRestAPI'
           inputs:
-            rootFolderOrFile: '$(System.DefaultWorkingDirectory)/fakerestapi'
+            rootFolderOrFile:
             includeRootFolder: false
             archiveType: 'zip'
             archiveFile: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
