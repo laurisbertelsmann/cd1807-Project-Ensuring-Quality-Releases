@@ -199,10 +199,9 @@ stages:
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
     displayName: WebApp Deployment
-    environment: 'test-vm'
-
-    pool:
-      vmImage: 'ubuntu-latest'      
+    environment: 
+      name: 'test-vm'
+      resourceType: VirtualMachine
     strategy:
       runOnce:
         deploy:
