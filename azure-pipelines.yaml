@@ -242,13 +242,13 @@ stages:
               targetType: 'inline'
               script: |           
                 #! /bin/bash
-                echo "updating system and installing dependencies"  
+                echo " --> updating system and installing dependencies"  
                 sudo apt-get upgrade -y
                 sudo apt-get install python3-pip -y
                 sudo apt-get install unzip -y
                 sudo apt-get install -y chromium-browser
                 pip3 install selenium
-                # cd ~/
+                cd ~/
                 DIR=/home/devopsagent/app
                 if [ ! -d "$DIR" ]; then
                   mkdir app
@@ -260,6 +260,7 @@ stages:
                 if [ ! -f "$FILE" ]; then
                     LATEST=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
                     wget http://chromedriver.storage.googleapis.com/$LATEST/chromedriver_linux64.zip
+                    echo " --> unzipping chromedriver_linux64.zip"
                     unzip -o chromedriver_linux64.zip
                     sudo ln -s $PWD/chromedriver /usr/local/bin/chromedriver
                 fi
@@ -267,14 +268,14 @@ stages:
                 # echo "Starting Selenium Tests"
                 # python3 ./automatedtesting/selenium/login.py >> selenium.log
                 # echo "Completed Selenium Tests. Check selenium.log for results."
-                echo "unzipping selenium.zip"
+                echo " -->  unzipping selenium.zip"
                 cd $(Pipeline.Workspace)/selenium/
                 unzip selenium.zip
                 sudo mkdir logs
                 # sudo chmod +x login.py
-                echo "Starting Selenium Tests"
+                echo " --> Starting Selenium Tests"
                 sudo python3.8 login.py 2>&1 | tee selenium_logs
-                echo "Completed Selenium Tests. Check selenium_logs for results."
+                echo " --> Completed Selenium Tests. Check selenium_logs for results."
                 ls -la
                 sudo mv selenium_logs logs/selenium_logs
                 ls -la /logs
