@@ -35,6 +35,15 @@ stages:
   - job: BuildInfrastructure
     steps:
     #--------------------------------------------#  
+    - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+      displayName: 'terraform unlock'
+      inputs:
+        workingDirectory: '$(Pipeline.Workspace)/terraform/'
+        # environmentServiceName: ${{ parameters.azureSubscription }}
+        command: 'forceunlock'
+        allowTelemetryCollection: true
+        lockID: 'd66fd693-8fd8-b865-9ed4-e4ad6d2cb988'
+
     # Use Terraform to create the Infrastructure and install Terraform on the pipeline agent.
     - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
       displayName: 'Terrafom installation'
