@@ -14,10 +14,15 @@ resource "azurerm_linux_web_app" "test" {
 
   app_settings = {
     "WEBSITE_RUN_FROM_PACKAGE" = 0,
-    "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
+    # "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
 
   }
+  
   site_config {
+    remote_debugging_enabled = true
     always_on = false
+    application_stack {
+      dotnet_version = "v6.0"
+    }
   }
 }
