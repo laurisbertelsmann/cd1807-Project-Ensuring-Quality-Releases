@@ -247,22 +247,30 @@ stages:
                 sudo apt-get install python3-pip -y
                 sudo apt-get install unzip -y
                 sudo apt-get install -y chromium-browser
-                pip3 install selenium
-                cd ~/
-                DIR=/home/devopsagent/app
-                if [ ! -d "$DIR" ]; then
-                  mkdir app
-                fi
+                sudo apt install -y unzip wget libxss1 libappindicator1 libindicator7 xvfb
+                wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                sudo dpkg -i google-chrome-stable_current_amd64.deb
+                wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/115.0.5790.170/linux64/chromedriver-linux64.zip
+                sudo mv chromedriver-linux64 /usr/bin/
+                sudo chmod +x /usr/bin/chromedriver-linux64
+
+                # pip3 install selenium
+                # cd ~/
+                # DIR=/home/devopsagent/app
+                # if [ ! -d "$DIR" ]; then
+                #   mkdir app
+                # fi
                 
-                cd app
+                # cd app
                 
-                FILE=/home/devopsagent/app/chromedriver_linux64.zip
+                # FILE=/home/devopsagent/app/chromedriver_linux64.zip
                 # if [ ! -f "$FILE" ]; then
                 #    LATEST=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-                    wget https://chromedriver.storage.googleapis.com/111.0.5563.64/chromedriver_linux64.zip
-                    echo " --> unzipping chromedriver_linux64.zip"
-                    unzip -o chromedriver_linux64.zip
-                    sudo ln -sf $PWD/chromedriver /usr/local/bin/chromedriver
+                    # wget https://chromedriver.storage.googleapis.com/111.0.5563.64/chromedriver_linux64.zip
+                    # echo " --> unzipping chromedriver_linux64.zip"
+                    # unzip -o chromedriver_linux64.zip
+                    # rm /usr/local/bin/chromedriver
+                    # sudo ln -sf $PWD/chromedriver /usr/local/bin/chromedriver
                 # fi
                 # export PATH=$PATH:/home/devopsagent/app
                 # echo "Starting Selenium Tests"
