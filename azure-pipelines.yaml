@@ -212,6 +212,7 @@ stages:
                    #--------------------------------------------#    
           # # Run JMeter test suite against the App Service
           - task: CmdLine@2
+            displayName: 'Run JMeter test'
             inputs:
               script: |
                 wget "https://apache.mirrors.lucidnetworks.net//jmeter/binaries/apache-jmeter-5.4.3.tgz"
@@ -221,7 +222,7 @@ stages:
                 
                 ./apache-jmeter-5.4.3/bin/jmeter -n -t ./automatedtesting/jmeter/stress_test.jmx -Jresdir=automatedtesting/jmeter/test_data.csv -l automatedtesting/jmeter/StressOutput.jtl -e -o ./automatedtesting/jmeter/stress_test_html_report/ -j ./automatedtesting/jmeter/jmeter_stress_test.log  
                 cat ./automatedtesting/jmeter/jmeter_stress_test.log 
-              workingDirectory: $(Pipeline.Workspace)/<artifact>            # ToDo: Use the artifact name from the task above
+              workingDirectory: $(Pipeline.Workspace)/drop-perftests      # ToDo: Use the artifact name from the task above
 
 
 #--------------------------------------------#  
@@ -289,10 +290,4 @@ stages:
                 echo " --> Starting Selenium Tests"
                 python3 login.py 2>&1 | tee selenium_logs
                 echo " --> Completed Selenium Tests. Check selenium_logs for results."
-                ls -la
-                sudo mv selenium_logs logs/selenium_logs
-                ls -la /logs
-                sudo mv logs/selenium_logs logs/log-sel.txt
-                ls -la /logs
-                sudo mv logs/log-sel.txt /var/log/log-sel.txt
-                ls -la /var/log/
+             
