@@ -12,17 +12,17 @@ resource "azurerm_linux_web_app" "test" {
   resource_group_name = "${var.resource_group}"
   service_plan_id     = azurerm_service_plan.test.id
 
-  app_settings = {
-    "WEBSITE_RUN_FROM_PACKAGE" = 0,
-    # "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
-
-  }
-  
-  site_config {
+site_config {
     remote_debugging_enabled = true
     always_on = false
     application_stack {
       dotnet_version = "v6.0"
     }
   }
+
+  app_settings = {
+    WEBSITE_RUN_FROM_PACKAGE = 0,
+    SCM_DO_BUILD_DURING_DEPLOYMENT = true
+
+}
 }
