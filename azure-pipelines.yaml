@@ -164,7 +164,7 @@ stages:
         - task: ArchiveFiles@2
           displayName: 'Archive FakeRestAPI'
           inputs:
-            rootFolderOrFile: 'automatedtesting/jmeter/fakerestapi/'
+            rootFolderOrFile: '$(System.DefaultWorkingDirectory)/fakerestapi'
             includeRootFolder: false
             archiveType: 'zip'
             archiveFile: '$(Build.ArtifactStagingDirectory)/fakerapi-$(Build.BuildId).zip'
@@ -198,17 +198,13 @@ stages:
   # Deploy FakeRestAPI Web App
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
-  
-    pool: 
-    # MyAgentPool
-    # pool: 
-    #   # name: MyAgentPool
-    #   # vmImage: $(vmImageName)
-      vmImage: 'ubuntu-latest'   
-    environment: 
-      # name: $(environmentName)
+    displayName: WebApp Deployment
+    environment:
       name: 'test-vm'
-      # resourceType: VirtualMachine  
+      resourceType: VirtualMachine
+      # tags: 'my-env-new'
+          # pool:
+          #   vmImage: 'Ubuntu-latest'
     strategy:
       runOnce:
         deploy:
