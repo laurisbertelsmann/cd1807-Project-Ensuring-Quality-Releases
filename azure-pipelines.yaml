@@ -270,7 +270,8 @@ stages:
                 # echo "Completed Selenium Tests. Check selenium.log for results."
                 echo " -->  unzipping selenium.zip"
                 cd $(Pipeline.Workspace)/selenium/
-                unzip selenium.zip
+                unzip -l selenium.zip
+                echo " -->  DONE unzipping selenium.zip"
                 sudo mkdir logs
                 # sudo chmod +x login.py
                 echo " --> Starting Selenium Tests"
