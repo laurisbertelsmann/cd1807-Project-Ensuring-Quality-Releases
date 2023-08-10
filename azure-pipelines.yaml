@@ -273,12 +273,12 @@ stages:
                 unzip -l selenium.zip
                 echo " -->  DONE unzipping selenium.zip"
                 echo " -->  checking python version"
-                python --version
-                which python
+                python3 --version
+                which python3
                 sudo mkdir -p logs
                 # sudo chmod +x login.py
                 echo " --> Starting Selenium Tests"
-                sudo python3.8 login.py 2>&1 | tee selenium_logs
+                python3 login.py 2>&1 | tee selenium_logs
                 echo " --> Completed Selenium Tests. Check selenium_logs for results."
                 ls -la
                 sudo mv selenium_logs logs/selenium_logs
