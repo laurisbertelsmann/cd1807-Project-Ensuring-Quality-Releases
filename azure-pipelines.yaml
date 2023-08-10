@@ -202,6 +202,8 @@ stages:
     environment: 
       name: 'test-vm'
       resourceType: VirtualMachine
+    pool:
+      name: 'MyAgentPool'
     strategy:
       runOnce:
         deploy:
