@@ -221,10 +221,11 @@ stages:
               deployToSlotOrASE: true
               ResourceGroupName: 'rg-udacity-project-final'
               SlotName: 'production'
-              packageForLinux: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip''
+              packageForLinux: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'
 
-                   #--------------------------------------------#    
+          
           # # Run JMeter test suite against the App Service
+          
           - task: CmdLine@2
             displayName: 'Run JMeter test'
             inputs:
