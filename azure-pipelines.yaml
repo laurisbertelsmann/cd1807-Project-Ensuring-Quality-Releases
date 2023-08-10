@@ -221,6 +221,7 @@ stages:
               resourceGroupName: 'rg-udacity-project-final'
               slotName: 'production'
               package: '$(Pipeline.Workspace)/fakerapi/fakerapi-$(Build.BuildId).zip'
+              deploymentMethod: auto
           
           # # Run JMeter test suite against the App Service
           
