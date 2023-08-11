@@ -318,6 +318,6 @@ stages:
                 sudo mkdir -p logs
                 # sudo chmod +x login.py
                 echo " --> Starting Selenium Tests"
-                python3 login.py 2>&1 | tee selenium_logs
+                python3 login.py 2>&1 | tee -a selenium_logs
                 echo " --> Completed Selenium Tests. Check selenium_logs for results."
              
